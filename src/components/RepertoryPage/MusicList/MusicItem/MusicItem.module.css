@@ -1,0 +1,73 @@
+.musicItem {
+    list-style: none;
+    width: 100%;
+    height: 4rem;
+    background: #957964;
+    border-radius: 10px;
+    color: white;
+    box-sizing: border-box;
+    display: flex;
+    padding: 0.5rem;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.musicItem:hover {
+    cursor: pointer;
+}
+
+.musicItemSelected {
+    list-style: none;
+    width: 100%;
+    height: 4rem;
+    background: #c2b5ac;
+    border-radius: 10px;
+    color: white;
+    box-sizing: border-box;
+    display: flex;
+    padding: 0.5rem;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.noteIconBackground {
+    width: 4rem;
+    height: 3rem;
+    border-radius: 10px;
+    background-color: #FEFFFE;
+    margin-right: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.noteIcon {
+    width: 50%;
+    height: 50%;
+    color: black;
+}
+
+.title {
+    width: 100%;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-around;
+    width: 20%;
+}
+
+.pen:hover {
+    cursor: pointer;
+    color: rgb(247, 196, 70);
+}
+
+.trash:hover {
+    cursor: pointer;
+    color: salmon
+}
+
