@@ -1,14 +1,28 @@
-.songDetailsBar {
-    width: 35%;
-    height: 100%;
-    background: #957964;
-    box-sizing: border-box;
-    padding: 2rem;
-    color: white;
+.songDetailsBarSizing {
+    width: 50%;
+    overflow: scroll;
+    overflow-x: hidden;
 }
 
-.video {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    width: 100%;
+.songDetailsBarSizing::-webkit-scrollbar {
+    width: 12px;
+    background-color: transparent;
+    overflow-x: hidden;
+}
+
+.songDetailsBarSizing::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background-color: transparent;
+    
+}
+
+.songDetailsBarSizing::-webkit-scrollbar-thumb:hover {
+    border-radius: 20px;
+    background-color: #C1C1C199;
+}
+
+@media (max-width: 768px) {
+    .songDetailsBarSizing {
+        width: 100%;
+    }
 }

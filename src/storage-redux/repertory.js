@@ -2,21 +2,31 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     isModal: false,
-    updateModal: null,
     songs: [],
-    song: null
+    song: null,
+    isLoadingSongs: true,
+    updateModal: null
 }
 
 const repertoryReducer = createSlice({
     name: 'repertory',
     initialState: initialState,
     reducers: {
-        changeModal(state, action) {
-            state.isModal = !state.isModal;
-            if (action.payload.updateModal) {
-                state.updateModal = action.payload.updateModal;
-            }
+        showModal(state) {
+            state.isModal = true;
         },
+        showModalForUpdate(state, action) {
+            state.isModal = true;
+            state.updateModal = action.payload.song
+        },
+        hideModal(state) {
+            state.isModal = false;
+        },
+
+        setLoadedSongs(state) {
+            state.isLoadingSongs = false;
+        },
+
         addSong(state, action) {
             state.songs = [...state.songs, action.payload.song]
         },

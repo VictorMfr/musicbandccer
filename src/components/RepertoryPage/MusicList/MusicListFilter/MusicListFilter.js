@@ -3,30 +3,22 @@ import classes from './MusicListFilter.module.css';
 
 const MusicListFilter = props => {
     return (
-        <div className={classes.filter}>
-            <div className={classes.textBlock}>
-                Filter By: 
+        <div className='bg-white my-3 p-3 pt-2 rounded-3'>
+            <h2 className='display-6'>Filter by: </h2>
+            <div className='bg-white d-flex'>
+                <select className="form-select form-select-sm mx-1" defaultValue={'Type'}>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+                <select className="form-select form-select-sm mx-1" defaultValue={'Tone'}>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+
+                <input className='form-control ms-5' placeholder='nombre' />
             </div>
-            <select defaultValue='any' onChange={data => props.typeSelect(data.target.value)}>
-                <option value='any'>any</option>
-                <option value='alabanza'>Alabanza</option>
-                <option value='adoracion'>Adoracion</option>
-            </select>
-            <select defaultValue='any' onChange={data => props.toneSelect(data.target.value)}>
-                <option value='any'>any</option>
-                <option value='C'>C</option>
-                <option value='C#'>C#</option>
-                <option value='D'>D</option>
-                <option value='D#'>D#</option>
-                <option value='E'>E</option>
-                <option value='F'>F</option>
-                <option value='F#'>F#</option>
-                <option value='G'>G</option>
-                <option value='G#'>G#</option>
-                <option value='A'>A</option>
-                <option value='A#'>A#</option>
-                <option value='B'>B</option>
-            </select>
         </div>
     )
 }

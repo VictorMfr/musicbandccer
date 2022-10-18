@@ -9,6 +9,7 @@ import useBackendRequest from '../../../../hooks/backendRequest';
 const MusicItem = props => {
     const request = useBackendRequest();
     const token = useSelector(state => state.auth.token);
+    const song = useSelector(state => state.repertory.song);
 
     const dispatch = useDispatch();
 
@@ -21,8 +22,8 @@ const MusicItem = props => {
             },
             body: { token, _id: props.databaseId }
         }).then(response => {
-            dispatch(repertoryActions.removeSong({song: response.song}));
-            dispatch(repertoryActions.updateSongDetails({song: null}))
+            dispatch(repertoryActions.removeSong({ song: response.song }));
+            dispatch(repertoryActions.updateSongDetails({ song: null }))
         })
     }
 
@@ -39,7 +40,7 @@ const MusicItem = props => {
             databaseId: props.databaseId
         }
 
-        dispatch(repertoryActions.changeModal({updateModal: songForUpdate}))
+        dispatch(repertoryActions.changeModal({ updateModal: songForUpdate }))
     }
 
     const selectSong = () => {
@@ -54,29 +55,32 @@ const MusicItem = props => {
             databaseId: props.databaseId
         });
 
-        dispatch(repertoryActions.updateSongDetails({song: {
-            title: props.title,
-            author: props.author,
-            type: props.type,
-            tone: props.tone,
-            isMounted: props.isMounted,
-            timesPlayed: props.timesPlayed,
-            url: props.url,
-            databaseId: props.databaseId
-        }}));
+        dispatch(repertoryActions.updateSongDetails({
+            song: {
+                title: props.title,
+                author: props.author,
+                type: props.type,
+                tone: props.tone,
+                isMounted: props.isMounted,
+                timesPlayed: props.timesPlayed,
+                url: props.url,
+                databaseId: props.databaseId
+            }
+        }));
     }
 
     return (
-        <li className={(props.songSelected.url === props.url)? classes.musicItemSelected : classes.musicItem} onClick={selectSong}>
-            <div className={classes.noteIconBackground}>
-                <FontAwesomeIcon icon={faMusic} className={classes.noteIcon}/>
+        
+            <div className={`p-2 d-flex align-items-center border-bottom overflow-hidden rounded-1 ${classes.hoverListItem} ${(song && song.databaseId === props.databaseId) ? 'bg-primary text-white' : ''}`} style={{ height: '3rem' }} onClick={selectSong}>
+                <h6 className='m-0 mx-2'>1</h6>
+                <div className='d-flex justify-content-between w-100'>
+                    <p className='m-0 h6 mx-3'>{props.title}</p>
+                    <p className='m-0 h6'>{props.author}</p>
+                    <p className='m-0 h6 mx-3'>{props.type}</p>
+                </div>
             </div>
-            <p className={classes.title}>{props.title} | {props.author}</p>
-            <div className={classes.controls}>
-                <FontAwesomeIcon icon={faPen} className={classes.pen} onClick={updateSongHandler}/>
-                <FontAwesomeIcon icon={faTrash} className={classes.trash} onClick={removeSongHandler}/>
-            </div>
-        </li>
+        
+
     );
 }
 

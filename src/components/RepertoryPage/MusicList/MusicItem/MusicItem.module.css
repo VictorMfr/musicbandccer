@@ -71,3 +71,12 @@
     color: salmon
 }
 
+.hoverListItem {
+    background-color: white;
+}
+
+
+.hoverListItem:hover {
+    cursor: pointer;
+    background: #F2F2F2;
+}

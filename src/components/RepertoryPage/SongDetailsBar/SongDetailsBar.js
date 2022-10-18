@@ -1,56 +1,100 @@
-import React from 'react';
+import React, {useState} from 'react';
 import classes from './SongDetailsBar.module.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import useBackendRequest from '../../../hooks/backendRequest';
+import { repertoryActions } from '../../../storage-redux/repertory';
+import { CloseButton } from 'react-bootstrap';
+import { Spinner } from 'react-bootstrap';
 
 const SongDetailsBar = () => {
     const song = useSelector(state => state.repertory.song);
-    console.log(song);
+    const token = useSelector(state => state.auth.token);
+    const dispatch = useDispatch();
 
-    // return (
-    //     <div className={classes.songDetailsBar}>
-    //         {song && <>
-    //             <h1>{song.title}</h1>
-    //             <h4>{song.author}</h4>
-    //             <hr/>
-    //             <iframe className={classes.video} width="560" height="315" src={`https://www.youtube.com/embed/${song.url.replace('https://www.youtube.com/watch?v=','')}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen/>
-    //             <hr/>
-    //             <br/>
-    //             <h2>Song Details</h2>
-    //             <p>tone: {song.tone}</p>
-    //             <p>timesPlayed: {song.timesPlayed}</p>
-    //             <p>isMounted: {song.isMounted}</p>
-    //             <p>type: {song.type}</p>
-    //         </>}
-    //         {!song && <h1>No details</h1>}
-    //     </div>
-    // );
+    const request = useBackendRequest();
+
+    const removeSongHandler = () => {
+        request.backendRequest({
+            url: '/song',
+            method: 'DELETE',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: { token, _id: song.databaseId }
+        }).then(response => {
+            dispatch(repertoryActions.removeSong({ song: response.song }));
+            dispatch(repertoryActions.updateSongDetails({ song: null }))
+        })
+    }
+
+
 
     return (
-            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
-                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                    <svg class="bi pe-none me-2" width="40" height="32"></svg>
-                    <span class="fs-4">Previsualización</span>
-                </a>
-                <hr />
-                <ul class="nav nav-pills flex-column mb-auto">
+        <>
+            {song && <div className={`container my-3 md-border mx-md-3 rounded-3 bg-white ${classes.songDetailsBarSizing}`}>
 
-                    <iframe width="516" height="315" src="https://www.youtube.com/embed/NCrb-w8qVWw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </ul>
-                <hr />
-                <div class="dropdown">
-                    <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2" />
-                        <strong>mdo</strong>
-                    </a>
-                    <ul class="dropdown-menu text-small shadow">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li><hr class="dropdown-divider"></hr></li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
-                    </ul>
-                </div>
-            </div>
+                {song && <>
+
+                    <div className="d-flex align-items-center justify-content-between">
+                        <h1 className='mt-2 display-6 d-inline-block'>Song details</h1>
+                        <CloseButton onClick={() => dispatch(repertoryActions.updateSongDetails({ song: null }))}/>
+                    </div>
+                    <hr />
+
+                    <iframe className='w-100' height="255" src={song.url.replace('watch?v=', 'embed/')} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                    
+
+                    <div className={`sm-py-5 ${classes.scrollbar}`}>
+                        <h2 className="border-bottom mt-3">{song.title}</h2>
+                        <div className="row pt-3 d-flex align-items-center ">
+                            <div className="col-6 d-flex align-items-center mb-4">
+                                <p className='mb-0 me-2'><i className="fa-solid fa-user  mx-1 mb-0 h6"></i></p>
+                                <div>
+                                    <h6 className="fw-bold mb-0 fs-6">Author</h6>
+                                    <small>{song.author}</small>
+                                </div>
+                            </div>
+                            <div className="col-6 d-flex align-items-center mb-4">
+                                <p className='mb-0 me-2'><i className="fa-solid fa-music mx-1 mb-0 h6"></i></p>
+                                <div>
+                                    <h6 className="fw-bold mb-0 fs-6">Type</h6>
+                                    <small>{song.type}</small>
+                                </div>
+                            </div>
+                            <div className="col-6 d-flex align-items-center mb-4">
+                                <p className='mb-0 me-2'><i className="fa-solid fa-music mx-1 mb-0 h6"></i></p>
+                                <div>
+                                    <h6 className="fw-bold mb-0 fs-6">Tone</h6>
+                                    <small>{song.tone}</small>
+                                </div>
+                            </div>
+                            <div className="col-6 d-flex align-items-center mb-4">
+                                <p className='mb-0 me-2'><i className="fa-solid fa-music mx-1 mb-0 h6"></i></p>
+                                <div>
+                                    <h6 className="fw-bold mb-0 fs-6">Is Mounted?</h6>
+                                    <small>{song.isMounted ? 'Si' : 'No'}</small>
+                                </div>
+                            </div>
+                            <div className="col-6 d-flex align-items-center mb-4">
+                                <p className='mb-0 me-2'><i className="fa-solid fa-music mx-1 mb-0 h6"></i></p>
+                                <div>
+                                    <h6 className="fw-bold mb-0 fs-6">Times played</h6>
+                                    <small>{song.timesPlayed}</small>
+                                </div>
+                            </div>
+                            <div className='col-12 d-flex align-items-center mb-3'>
+                                <button className='btn btn-success me-2' onClick={() => dispatch(repertoryActions.showModalForUpdate({song}))}>Update song</button>
+                                <button className='btn btn-danger' onClick={removeSongHandler}>Remove song</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </>}
+
+            </div>}
+        </>
+
     );
 }
 
