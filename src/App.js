@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { Switch, Route, Redirect, useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import WelcomePage from './pages/WelcomePage/WelcomePage';
-import RegisterPage from './pages/RegisterPage/RegisterPage';
-import UserMainPage from './pages/UserMainPage/UserMainPage';
 import useBackendRequest from './hooks/backendRequest';
 import { authActions } from './storage-redux/auth';
-import LoginPage from './pages/LoginPage/LoginPage';
-import RepertoryPage from './pages/RepertoryPage/RepertoryPage';
+
+
+const RepertoryPage = React.lazy(() => import('./pages/RepertoryPage/RepertoryPage'));
+const LoginPage = React.lazy(() => import('./pages/LoginPage/LoginPage'));
+const UserMainPage = React.lazy(() => import('./pages/UserMainPage/UserMainPage'));
+const RegisterPage = React.lazy(() => import('./pages/RegisterPage/RegisterPage'));
+const WelcomePage = React.lazy(() => import('./pages/WelcomePage/WelcomePage'));
 
 const App = () => {
   const paths = useSelector(state => state.routes);
@@ -49,28 +51,29 @@ const App = () => {
   const isAuthenticated = auth.isAuth && !auth.isLoading;
 
   return (
-    <Switch>
+    <Suspense fallback={<></>}>
+      <Switch>
+        {auth.isAuth && <Route path={paths.frontend.repertory}>
+          <RepertoryPage />
+        </Route>}
 
-      <Route path={paths.frontend.repertory}>
-        <RepertoryPage />
-      </Route>
+        <Route exact path={paths.frontend.home}>
+          {isNotAuthenticated && <WelcomePage />}
+          {isAuthenticated && <UserMainPage />}
+        </Route>
+        {!auth.isAuth && <Route exact path={paths.frontend.register}>
+          <RegisterPage />
+        </Route>}
 
-      <Route exact path={paths.frontend.home}>
-        {isNotAuthenticated && <WelcomePage />}
-        {isAuthenticated && <UserMainPage />}
-      </Route>
-      {!auth.isAuth && <Route exact path={paths.frontend.register}>
-        <RegisterPage />
-      </Route>}
+        {!auth.isAuth && <Route exact path={paths.frontend.login}>
+          <LoginPage />
+        </Route>}
 
-      {!auth.isAuth && <Route exact path={paths.frontend.login}>
-        <LoginPage />
-      </Route>}
-
-      <Route path={paths.frontend.any}>
-        <Redirect to={paths.frontend.home}/>
-      </Route>
-    </Switch>
+        <Route path={paths.frontend.any}>
+          <Redirect to={paths.frontend.home} />
+        </Route>
+      </Switch>
+    </Suspense>
   );
 
 }
