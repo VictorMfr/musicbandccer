@@ -31,14 +31,14 @@ const MusicList = props => {
         setToneSelect(data)
     }
 
-
+    
 
     return (
         <>
             {!repertory.isLoadingSongs && <div className={`overflow-auto ${classes.scrollbar}`}>
                 {/* <MusicListFilter typeSelect={typeChangeHandler} toneSelect={toneChangeHandler} /> */}
                 <div>
-                    {songs.filter(song => {
+                    {songs && songs.filter(song => {
                         if (typeSelect !== 'any') {
                             return typeSelect === song.type;
                         }

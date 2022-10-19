@@ -30,10 +30,11 @@ const RepertoryPage = () => {
         }).catch(error => {
             console.log(error);
         });
-    }, []);
-    
+    }, [dispatch, request, token]);
 
-    
+
+
+
 
     return (
         <>

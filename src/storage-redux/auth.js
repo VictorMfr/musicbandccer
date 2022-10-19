@@ -22,6 +22,8 @@ const authReducer = createSlice({
             state.userData = {};
             state.token = '';
             state.isLoading = false;
+
+            localStorage.removeItem('token');
         }
     } 
 });

@@ -23,7 +23,7 @@ const SongDetailsBar = () => {
             body: { token, _id: song.databaseId }
         }).then(response => {
             dispatch(repertoryActions.removeSong({ song: response.song }));
-            dispatch(repertoryActions.updateSongDetails({ song: null }))
+            dispatch(repertoryActions.updateSongDetails({ song: null }));
         })
     }
 

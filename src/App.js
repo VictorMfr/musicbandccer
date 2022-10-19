@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Switch, Route, Redirect } from 'react-router';
+import { Switch, Route, Redirect, useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import WelcomePage from './pages/WelcomePage/WelcomePage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
@@ -13,9 +13,10 @@ const App = () => {
   const paths = useSelector(state => state.routes);
   const auth = useSelector(state => state.auth);
   const request = useBackendRequest();
+  const history = useHistory();
   const dispatch = useDispatch();
-  
-  
+
+
   useEffect(() => {
     const token = localStorage.getItem('token');
 
@@ -42,29 +43,30 @@ const App = () => {
       })
 
     }
-  },[])
+  }, [])
 
   const isNotAuthenticated = !auth.isAuth && !auth.isLoading;
   const isAuthenticated = auth.isAuth && !auth.isLoading;
 
   return (
     <Switch>
+
+      <Route path={paths.frontend.repertory}>
+        <RepertoryPage />
+      </Route>
+
       <Route exact path={paths.frontend.home}>
-        { isNotAuthenticated && <WelcomePage/>}
-        { isAuthenticated && <UserMainPage/>}
+        {isNotAuthenticated && <WelcomePage />}
+        {isAuthenticated && <UserMainPage />}
       </Route>
       {!auth.isAuth && <Route exact path={paths.frontend.register}>
-        <RegisterPage/>
+        <RegisterPage />
       </Route>}
 
       {!auth.isAuth && <Route exact path={paths.frontend.login}>
-        <LoginPage/>
+        <LoginPage />
       </Route>}
 
-      {auth.isAuth && <Route path={paths.frontend.repertory}>
-        <RepertoryPage />
-      </Route>}
-      
       <Route path={paths.frontend.any}>
         <Redirect to={paths.frontend.home}/>
       </Route>

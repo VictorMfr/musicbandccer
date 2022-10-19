@@ -46,6 +46,7 @@ const LoginPage = () => {
             if (data.error == false) {
                 localStorage.setItem('token', data.token);
                 dispatch(authActions.login({ userData: data.user, token: data.token }));
+                history.replace(homePath);
             } else {
                 console.log(data)
             }
