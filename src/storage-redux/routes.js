@@ -10,7 +10,7 @@ const initialState = {
     },
 
     backend: {
-        url: 'http://localhost:9000'
+        url: 'https://backend-music-band-api.herokuapp.com'
     }
 }
 
