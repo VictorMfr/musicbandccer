@@ -3,7 +3,6 @@ import classes from './MusicList.module.css';
 import MusicItem from './MusicItem/MusicItem';
 import { useSelector, useDispatch } from 'react-redux';
 import { repertoryActions } from '../../../storage-redux/repertory';
-import MusicListFilter from './MusicListFilter/MusicListFilter';
 
 const MusicList = props => {
     const songs = useSelector(state => state.repertory.songs);
@@ -36,7 +35,6 @@ const MusicList = props => {
     return (
         <>
             {!repertory.isLoadingSongs && <div className={`overflow-auto ${classes.scrollbar}`}>
-                {/* <MusicListFilter typeSelect={typeChangeHandler} toneSelect={toneChangeHandler} /> */}
                 <div>
                     {songs && songs.filter(song => {
                         if (typeSelect !== 'any') {

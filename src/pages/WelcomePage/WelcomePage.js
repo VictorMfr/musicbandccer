@@ -1,8 +1,8 @@
 import React from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import classes from './WelcomePage.module.css';
-import { Button, Col, Container, Navbar, Row, Stack, Nav, Image } from 'react-bootstrap';
+import { Button, Container, Navbar, Stack, Nav, Image } from 'react-bootstrap';
 
 const WelcomePage = () => {
     const history = useHistory();

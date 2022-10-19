@@ -1,22 +1,12 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { authActions } from '../../storage-redux/auth';
 import Header from '../../components/General/Header/Header';
 import classes from './UserMainPage.module.css';
 
 const UserMainPage = props => {
     const repertory = useSelector(state => state.routes.frontend.repertory);
-    const auth = useSelector(state => state.auth.userData);
     const history = useHistory();
-    const dispatch = useDispatch();
-    // So, for some reason doesnt get right userdata
-
-    const logoutHandler = event => {
-        localStorage.removeItem('token');
-        dispatch(authActions.logout());
-    }
-
 
     return (
         <>
@@ -27,7 +17,7 @@ const UserMainPage = props => {
                         <div className="col-md-6 px-0">
                             <h1 className="display-4 fst-italic">Versiculo del dia</h1>
                             <em className="lead my-3">¨Jehová es mi fortaleza y mi escudo; En él confió mi corazón, y fui ayudado, Por lo que se gozó mi corazón, Y con mi cántico le alabaré.¨. (Salmo 28:7 RVR1960)</em>
-                            <p className="lead mb-0"><a href="#" className="text-white fw-bold">Abre la Biblia online</a></p>
+                            <p className="lead mb-0"><a href="/" className="text-white fw-bold">Abre la Biblia online</a></p>
                         </div>
                     </div>
                     
@@ -53,7 +43,7 @@ const UserMainPage = props => {
                                     <h3 className="mb-0">Chat del grupo</h3>
                                     <div className="mb-1 text-muted">¡Dejate escuchar!</div>
                                     <p className="mb-auto">Planificate con el grupo, muestra lo que piensas en el chat.</p>
-                                    <a href="#" className="stretched-link">Abrir Chat</a>
+                                    <a href="/" className="stretched-link">Abrir Chat</a>
                                 </div>
                                 <div className={`col-auto d-none d-lg-block ${classes.repertoryThumbnail2}`}>
                                     <svg className="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"></svg>
@@ -76,9 +66,9 @@ const UserMainPage = props => {
                         </div>
 
                         <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
-                            <li className="ms-3"><a className="text-muted" href="#"><svg className="bi" width="24" height="24"></svg></a></li>
-                            <li className="ms-3"><a className="text-muted" href="#"><svg className="bi" width="24" height="24"></svg></a></li>
-                            <li className="ms-3"><a className="text-muted" href="#"><svg className="bi" width="24" height="24"></svg></a></li>
+                            <li className="ms-3"><a className="text-muted" href="/"><svg className="bi" width="24" height="24"></svg></a></li>
+                            <li className="ms-3"><a className="text-muted" href="/"><svg className="bi" width="24" height="24"></svg></a></li>
+                            <li className="ms-3"><a className="text-muted" href="/"><svg className="bi" width="24" height="24"></svg></a></li>
                         </ul>
                     </footer>
                 </div>

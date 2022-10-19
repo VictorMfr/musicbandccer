@@ -43,7 +43,7 @@ const LoginPage = () => {
         });
 
         response.then(data => {
-            if (data.error == false) {
+            if (data.error === false) {
                 localStorage.setItem('token', data.token);
                 dispatch(authActions.login({ userData: data.user, token: data.token }));
                 history.replace(homePath);
@@ -60,7 +60,7 @@ const LoginPage = () => {
                     <div className="col text-center mb-4">
                         <h1 className="mt-3">Incia sesion</h1>
                         <p className="">Inicia sesion para continuar</p>
-                        <a href='#'>O registrate</a>
+                        <a href='/register'>O registrate</a>
                     </div>
 
                     <div className="col mx-auto col-11 mb-4">

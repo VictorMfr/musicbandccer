@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import MusicList from '../../components/RepertoryPage/MusicList/MusicList';
 import SongDetailsBar from '../../components/RepertoryPage/SongDetailsBar/SongDetailsBar';
 import Header from '../../components/General/Header/Header';
@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import RepertoryModal from '../../components/RepertoryPage/RepertoryModal/RepertoryModal';
 import { repertoryActions } from '../../storage-redux/repertory';
 import useBackendRequest from '../../hooks/backendRequest';
-import classes from './RepertoryPage.module.css';
 import MusicListFilter from '../../components/RepertoryPage/MusicList/MusicListFilter/MusicListFilter';
 
 

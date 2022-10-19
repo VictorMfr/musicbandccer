@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import classes from './SongDetailsBar.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import useBackendRequest from '../../../hooks/backendRequest';
 import { repertoryActions } from '../../../storage-redux/repertory';
 import { CloseButton } from 'react-bootstrap';
-import { Spinner } from 'react-bootstrap';
 
 const SongDetailsBar = () => {
     const song = useSelector(state => state.repertory.song);

@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import classes from './RepertoryModal.module.css';
-import repertory, { repertoryActions } from '../../../storage-redux/repertory';
+import { repertoryActions } from '../../../storage-redux/repertory';
 import { useDispatch, useSelector } from 'react-redux';
 import useBackendRequest from '../../../hooks/backendRequest';
-import { faDisplay } from '@fortawesome/free-solid-svg-icons';
-import * as bootstrap from 'bootstrap';
-import finalPropsSelectorFactory from 'react-redux/es/connect/selectorFactory';
 import { Modal, Button, CloseButton } from 'react-bootstrap';
 
 
