@@ -6,7 +6,8 @@ const initialState = {
         register: '/register',
         login: '/login',
         any: '*',
-        repertory: '/repertory'
+        repertory: '/repertory',
+        info: '/info'
     },
 
     backend: {

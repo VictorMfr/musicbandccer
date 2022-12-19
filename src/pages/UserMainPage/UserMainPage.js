@@ -6,19 +6,17 @@ import classes from './UserMainPage.module.css';
 
 const UserMainPage = props => {
     const repertory = useSelector(state => state.routes.frontend.repertory);
+    const auth = useSelector(state => state.auth.userData)
     const history = useHistory();
 
     return (
-
-
-
         <>
             <section className='bg-light' style={{height: '100vh'}}>
                 <Header />
                 <div className='container mt-5'>
+                    <h2 className='display-5'>¡Bienvenido {auth.username}!</h2>
                     <div className={`p-4 p-md-5 mb-4 rounded text-bg-dark ${classes.backgroundImage}`}>
                         <div className="col-md-6 px-0">
-                            {/* <h1 className="display-4 fst-italic">Versiculo del dia</h1> */}
                             <em className="lead my-3">¨Jehová es mi fortaleza y mi escudo; En él confió mi corazón, y fui ayudado, Por lo que se gozó mi corazón, Y con mi cántico le alabaré.¨. (Salmo 28:7 RVR1960)</em>
                             <p className="lead mb-0"><a href="https://www.biblegateway.com/" className="text-white fw-bold">Abre la Biblia online</a></p>
                         </div>
@@ -27,7 +25,7 @@ const UserMainPage = props => {
                     {/* Posts */}
                     <div className="row mb-2">
                         <div className="col-md-6">
-                            <div className={`row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative hoverElement`} onClick={() => history.replace(repertory)}>
+                            <div className={`row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative`} onClick={() => history.replace(repertory)}>
                                 <div className="col p-4 d-flex flex-column position-static">
                                     <strong className="d-inline-block mb-2 text-primary">Ir al repertorio</strong>
                                     <h3 className="mb-0">Repertorio</h3>
@@ -36,21 +34,6 @@ const UserMainPage = props => {
                                 </div>
                                 <div className={`col-auto d-none d-lg-block ${classes.repertoryThumbnail}`}>
                                     <svg className="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"></svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6">
-                            <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                                <div className="col p-4 d-flex flex-column position-static">
-                                    <strong className="d-inline-block mb-2 text-success">Ir a chat</strong>
-                                    <h3 className="mb-0">Chat del grupo</h3>
-                                    <div className="mb-1 text-muted">///EN CONSTRUCCIÓN///</div>
-                                    <p className="mb-auto">Planificate con el grupo, muestra lo que piensas en el chat.</p>
-                                    <a href="/" className="stretched-link">Abrir Chat</a>
-                                </div>
-                                <div className={`col-auto d-none d-lg-block ${classes.repertoryThumbnail2}`}>
-                                    <svg className="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"></svg>
-
                                 </div>
                             </div>
                         </div>

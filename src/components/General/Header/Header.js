@@ -9,19 +9,52 @@ const Header = () => {
     const repertory = useSelector(state => state.routes.frontend.repertory);
     const dispatch = useDispatch();
 
+    const urlLocation = history.location.pathname
+
     console.log()
 
 
     return (
-        <header className='d-flex py-2 mb-2 border-bottom bg-white'>
-            <ul className='nav col justify-content-center'>
-                <li><a href="/" className='nav-link text-black hoverElement' onClick={() => history.replace(home)}>Inicio</a></li>
-                <li><a href="/" className='nav-link text-black hoverElement'>Ir a Chat (construcción)</a></li>
-                {history.location.pathname !== '/repertory' && <li><a href="/" className='nav-link text-black hoverElement' onClick={() => history.replace(repertory)}>Ir a Repertorio</a></li>}
-                <li className='ms-md-auto me-md-4'><button className='btn btn-outline-primary' onClick={() => dispatch(authActions.logout())}>Cerrar sesion</button></li>
-            </ul>
-            
-        </header>
+        // WelcomePage header
+        <>
+            {urlLocation == "/" && !localStorage.getItem('token') &&
+                <nav class="navbar navbar-expand-lg bg-light border-bottom p-3">
+                    <div class="container-fluid">
+                        <div className='d-flex'>
+                            <button class="btn navbar-brand p-0" onClick={() => history.push('/')}>Repertorio CCER</button>
+                            <button className='btn p-0 m-0' onClick={() => history.push('/info')}>Información</button>
+                        </div>
+
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                <li class="nav-item me-3">
+                                    <button className='btn p-2' onClick={() => history.push('/login')}>Iniciar sesión</button>
+                                </li>
+                                <li class="nav-item">
+                                    <button className='btn p-2' onClick={() => history.push('/register')}>Registrarse</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>}
+                {urlLocation == "/" && localStorage.getItem('token') &&
+                <nav class="navbar navbar-expand-lg bg-light border-bottom p-2">
+                    <div class="container-fluid">                      
+                        <button class="btn p-0" onClick={() => history.push('/repertory')}>Ir a repertorio</button>
+                        <button className='btn btn-outline-primary' onClick={() => dispatch(authActions.logout())}>Cerrar sesión</button>
+                    </div>
+                </nav>}
+                {urlLocation == "/repertory" && localStorage.getItem('token') &&
+                <nav class="navbar navbar-expand-lg bg-light border-bottom p-2">
+                    <div class="container-fluid">                
+                        <button class="btn p-0" onClick={() => history.push('/')}>Inicio</button>
+                        <button className='btn btn-outline-primary' onClick={() => dispatch(authActions.logout())}>Cerrar sesión</button>
+                    </div>
+                </nav>}
+        </>
     );
 }
 

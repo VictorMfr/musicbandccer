@@ -10,6 +10,7 @@ const LoginPage = React.lazy(() => import('./pages/LoginPage/LoginPage'));
 const UserMainPage = React.lazy(() => import('./pages/UserMainPage/UserMainPage'));
 const RegisterPage = React.lazy(() => import('./pages/RegisterPage/RegisterPage'));
 const WelcomePage = React.lazy(() => import('./pages/WelcomePage/WelcomePage'));
+const InfoPage = React.lazy(() => import('./pages/InfoPage/InfoPage'));
 
 const App = () => {
   const paths = useSelector(state => state.routes);
@@ -61,6 +62,16 @@ const App = () => {
           {isNotAuthenticated && <WelcomePage />}
           {isAuthenticated && <UserMainPage />}
         </Route>
+
+        <Route exact path={paths.frontend.home}>
+          {isNotAuthenticated && <WelcomePage />}
+          {isAuthenticated && <UserMainPage />}
+        </Route>
+
+        {isNotAuthenticated && <Route exact path={paths.frontend.info}>
+          <InfoPage/>
+        </Route>}
+
         {!auth.isAuth && <Route exact path={paths.frontend.register}>
           <RegisterPage />
         </Route>}
