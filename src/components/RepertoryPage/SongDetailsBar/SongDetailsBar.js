@@ -49,41 +49,41 @@ const SongDetailsBar = () => {
                             <div className="col-6 d-flex align-items-center mb-4">
                                 <p className='mb-0 me-2'><i className="fa-solid fa-user  mx-1 mb-0 h6"></i></p>
                                 <div>
-                                    <h6 className="fw-bold mb-0 fs-6">Author</h6>
+                                    <h6 className="fw-bold mb-0 fs-6">Autor</h6>
                                     <small>{song.author}</small>
                                 </div>
                             </div>
                             <div className="col-6 d-flex align-items-center mb-4">
                                 <p className='mb-0 me-2'><i className="fa-solid fa-music mx-1 mb-0 h6"></i></p>
                                 <div>
-                                    <h6 className="fw-bold mb-0 fs-6">Type</h6>
+                                    <h6 className="fw-bold mb-0 fs-6">Tipo</h6>
                                     <small>{song.type}</small>
                                 </div>
                             </div>
                             <div className="col-6 d-flex align-items-center mb-4">
                                 <p className='mb-0 me-2'><i className="fa-solid fa-music mx-1 mb-0 h6"></i></p>
                                 <div>
-                                    <h6 className="fw-bold mb-0 fs-6">Tone</h6>
+                                    <h6 className="fw-bold mb-0 fs-6">Tono</h6>
                                     <small>{song.tone}</small>
                                 </div>
                             </div>
                             <div className="col-6 d-flex align-items-center mb-4">
                                 <p className='mb-0 me-2'><i className="fa-solid fa-music mx-1 mb-0 h6"></i></p>
                                 <div>
-                                    <h6 className="fw-bold mb-0 fs-6">Is Mounted?</h6>
+                                    <h6 className="fw-bold mb-0 fs-6">¿Montada?</h6>
                                     <small>{song.isMounted ? 'Si' : 'No'}</small>
                                 </div>
                             </div>
                             <div className="col-6 d-flex align-items-center mb-4">
                                 <p className='mb-0 me-2'><i className="fa-solid fa-music mx-1 mb-0 h6"></i></p>
                                 <div>
-                                    <h6 className="fw-bold mb-0 fs-6">Times played</h6>
+                                    <h6 className="fw-bold mb-0 fs-6">Veces tocadas</h6>
                                     <small>{song.timesPlayed}</small>
                                 </div>
                             </div>
                             <div className='col-12 d-flex align-items-center mb-3'>
                                 <button className='btn btn-success me-2' onClick={() => dispatch(repertoryActions.showModalForUpdate({song}))}>Update song</button>
-                                <button className='btn btn-danger' onClick={removeSongHandler}>Remove song</button>
+                                <button className='btn btn-danger' onClick={removeSongHandler}>Quitar canción</button>
                             </div>
                         </div>
 

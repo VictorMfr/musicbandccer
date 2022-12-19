@@ -2,11 +2,11 @@ import { useSelector } from "react-redux";
 
 
 const useBackendRequest = () => {
-    const BackendUrl = useSelector(state => state.routes.backend.url);
+    const BackendUrl = useSelector(state => state.routes.backend);
 
-    const backendRequest = async (requestConfig) => {
+    const backendRequest = async (requestConfig, isLocal = true) => {
         try {
-            const response = await fetch(BackendUrl + requestConfig.url, {
+            const response = await fetch((isLocal? BackendUrl.urlLocal: BackendUrl.url) + requestConfig.url, {
                 method: requestConfig.method,
                 headers: requestConfig.headers,
                 body: JSON.stringify(requestConfig.body)

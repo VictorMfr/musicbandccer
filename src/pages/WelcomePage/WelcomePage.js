@@ -28,13 +28,10 @@ const WelcomePage = () => {
                         <div className="col-lg-6 mx-auto">
                             <p className="lead mb-4"> Con los mejores equipos de alabanza y adoracion. Una página web para sacar al máximo las canciones</p>
                             <Stack lg={5} gap={2} direction="horizontal" className='justify-content-center mb-2'>
-                                <Button size="lg" variant="primary">Primary</Button>
-                                <Button size="lg" variant="outline-secondary">Secondary</Button>
+                                <Button size="sm" variant="primary">Primary</Button>
+                                <Button size="sm" variant="outline-secondary">Secondary</Button>
                             </Stack>
-                            <div className="d-flex justify-content-center">
-                                <i className="fa-brands fa-instagram h2 mx-1"></i>
-                                <i className="fa-brands fa-youtube h2 mx-1"></i>
-                            </div>
+                            
 
                         </div>
                     </Stack>

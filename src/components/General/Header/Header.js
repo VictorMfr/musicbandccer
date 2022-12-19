@@ -9,17 +9,18 @@ const Header = () => {
     const repertory = useSelector(state => state.routes.frontend.repertory);
     const dispatch = useDispatch();
 
+    console.log()
+
 
     return (
         <header className='d-flex py-2 mb-2 border-bottom bg-white'>
-            <ul className='nav'>
+            <ul className='nav col justify-content-center'>
                 <li><a href="/" className='nav-link text-black hoverElement' onClick={() => history.replace(home)}>Inicio</a></li>
-                <li><a href="/" className='nav-link text-black hoverElement'>Ir a Chat</a></li>
-                <li><a href="/" className='nav-link text-black hoverElement' onClick={() => history.replace(repertory)}>Ir a Repertorio</a></li>
+                <li><a href="/" className='nav-link text-black hoverElement'>Ir a Chat (construcción)</a></li>
+                {history.location.pathname !== '/repertory' && <li><a href="/" className='nav-link text-black hoverElement' onClick={() => history.replace(repertory)}>Ir a Repertorio</a></li>}
+                <li className='ms-md-auto me-md-4'><button className='btn btn-outline-primary' onClick={() => dispatch(authActions.logout())}>Cerrar sesion</button></li>
             </ul>
-            <div className='ms-auto mx-2'>
-                <button className='btn btn-outline-primary' onClick={() => dispatch(authActions.logout())}>Cerrar sesion</button>
-            </div>
+            
         </header>
     );
 }

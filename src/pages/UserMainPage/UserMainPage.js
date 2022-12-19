@@ -9,15 +9,18 @@ const UserMainPage = props => {
     const history = useHistory();
 
     return (
+
+
+
         <>
-            <section className='bg-light'>
+            <section className='bg-light' style={{height: '100vh'}}>
                 <Header />
                 <div className='container mt-5'>
                     <div className={`p-4 p-md-5 mb-4 rounded text-bg-dark ${classes.backgroundImage}`}>
                         <div className="col-md-6 px-0">
-                            <h1 className="display-4 fst-italic">Versiculo del dia</h1>
+                            {/* <h1 className="display-4 fst-italic">Versiculo del dia</h1> */}
                             <em className="lead my-3">¨Jehová es mi fortaleza y mi escudo; En él confió mi corazón, y fui ayudado, Por lo que se gozó mi corazón, Y con mi cántico le alabaré.¨. (Salmo 28:7 RVR1960)</em>
-                            <p className="lead mb-0"><a href="/" className="text-white fw-bold">Abre la Biblia online</a></p>
+                            <p className="lead mb-0"><a href="https://www.biblegateway.com/" className="text-white fw-bold">Abre la Biblia online</a></p>
                         </div>
                     </div>
                     
@@ -41,7 +44,7 @@ const UserMainPage = props => {
                                 <div className="col p-4 d-flex flex-column position-static">
                                     <strong className="d-inline-block mb-2 text-success">Ir a chat</strong>
                                     <h3 className="mb-0">Chat del grupo</h3>
-                                    <div className="mb-1 text-muted">¡Dejate escuchar!</div>
+                                    <div className="mb-1 text-muted">///EN CONSTRUCCIÓN///</div>
                                     <p className="mb-auto">Planificate con el grupo, muestra lo que piensas en el chat.</p>
                                     <a href="/" className="stretched-link">Abrir Chat</a>
                                 </div>

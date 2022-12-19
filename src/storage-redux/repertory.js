@@ -5,7 +5,10 @@ const initialState = {
     songs: [],
     song: null,
     isLoadingSongs: true,
-    updateModal: null
+    updateModal: null,
+    filterSearchedSong: '',
+    filterSongType: '',
+    filterSongTone: '',
 }
 
 const repertoryReducer = createSlice({
@@ -22,11 +25,9 @@ const repertoryReducer = createSlice({
         hideModal(state) {
             state.isModal = false;
         },
-
         setLoadedSongs(state) {
             state.isLoadingSongs = false;
         },
-
         addSong(state, action) {
             state.songs = [...state.songs, action.payload.song]
         },
@@ -42,6 +43,15 @@ const repertoryReducer = createSlice({
         },
         updateSongDetails(state, action) {
             state.song = action.payload.song;
+        },
+        updateFilteredSearchedSong(state, action) {
+            state.filterSearchedSong = action.payload.filterSearchedSong;
+        },
+        updateFilteredSongType(state, action) {
+            state.filterSongType = action.payload.filterSongType;
+        },
+        updateFilteredSongTone(state, action) {
+            state.filterSongTone = action.payload.filterSongTone;
         }
     } 
 });
