@@ -12,7 +12,7 @@ const UserMainPage = props => {
     return (
         <>
             <section className='bg-light' style={{height: '100vh'}}>
-                <Header />
+                <Header/>
                 <div className='container mt-5'>
                     <h2 className='display-5'>¡Bienvenido {auth.username}!</h2>
                     <div className={`p-4 p-md-5 mb-4 rounded text-bg-dark ${classes.backgroundImage}`}>
