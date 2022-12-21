@@ -48,7 +48,7 @@ const MusicItem = props => {
                         <p className='m-0 text-truncate'>{props.author}</p>
                     </div>
                     <div className='col-4'>
-                        <p className='m-0 text-truncate'>{props.type == "adoración"? 'Adoración': 'Alabanza'}</p>
+                        <p className='m-0 text-truncate'>{props.type === "adoración"? 'Adoración': 'Alabanza'}</p>
                     </div>
                 </div>
             </div>

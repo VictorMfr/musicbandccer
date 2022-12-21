@@ -42,18 +42,21 @@ const MusicList = props => {
                         } else if (repertory.filterSongType === song.type) {
                             return song;
                         }
+                        return song;
                     }).filter(song => {
                         if (repertory.filterSongTone === '') {
                             return song;
                         } else if (repertory.filterSongTone === song.tone) {
                             return song;
                         }
+                        return song;
                     }).filter(song => {
                         if (repertory.filterSearchedSong === '') {
                             return song;
                         } else if (song.title.toLowerCase().includes(repertory.filterSearchedSong.toLowerCase())) {
                             return song;
                         }
+                        return song;
                     }).map((song, index) => <MusicItem
                         index={index}
                         markedText={repertory.filterSearchedSong}

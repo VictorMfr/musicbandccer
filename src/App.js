@@ -1,5 +1,5 @@
 import React, { useEffect, Suspense } from 'react';
-import { Switch, Route, Redirect, useHistory } from 'react-router';
+import { Switch, Route, Redirect } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import useBackendRequest from './hooks/backendRequest';
 import { authActions } from './storage-redux/auth';
@@ -16,7 +16,6 @@ const App = () => {
   const paths = useSelector(state => state.routes);
   const auth = useSelector(state => state.auth);
   const request = useBackendRequest();
-  const history = useHistory();
   const dispatch = useDispatch();
 
 
@@ -46,7 +45,7 @@ const App = () => {
       })
 
     }
-  }, [])
+  }, [dispatch, request])
 
   const isNotAuthenticated = !auth.isAuth && !auth.isLoading;
   const isAuthenticated = auth.isAuth && !auth.isLoading;

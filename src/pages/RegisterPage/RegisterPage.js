@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import useBackendRequest from '../../hooks/backendRequest';
 import { authActions } from '../../storage-redux/auth';
-import { useHistory } from 'react-router-dom';
 import classes from './RegisterPage.module.css';
 
 const RegisterPage = () => {
 
-    const homePath = useSelector(state => state.routes.frontend.home);
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -16,7 +14,6 @@ const RegisterPage = () => {
 
     const request = useBackendRequest();
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const usernameChangeHandler = event => {
         setUsername(event.target.value);
@@ -75,7 +72,7 @@ const RegisterPage = () => {
             <div className={`position-absolute top-50 start-50 translate-middle ${classes.formSizing}`}>
                 <div className='bg-white p-4 rounded-3'>
                     <div className='mb-3'>
-                        <img className='d-block mx-auto mb-3' src='/imgs/logo_iglesia.svg' width="72" />
+                        <img className='d-block mx-auto mb-3' src='/imgs/logo_iglesia.svg' alt="" width="72" />
                         <h5 className='text-center'>Registro</h5>
                     </div>
                     <form className='mb-3' onSubmit={submitFormHandler}>

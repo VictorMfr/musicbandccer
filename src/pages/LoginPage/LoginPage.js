@@ -58,7 +58,7 @@ const LoginPage = () => {
             <div className={`position-absolute top-50 start-50 translate-middle ${classes.formSizing}`}>
                 <div className='bg-white p-4 rounded-3'>
                     <div className='mb-3'>
-                        <img className='d-block mx-auto mb-3' src='/imgs/logo_iglesia.svg' width="72" />
+                        <img className='d-block mx-auto mb-3' src='/imgs/logo_iglesia.svg' alt="" width="72" />
                         <h5 className='text-center'>Iniciar sesión</h5>
                     </div>
                     <form className='mb-3' onSubmit={loginFormHandler}>
