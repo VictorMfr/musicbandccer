@@ -14,7 +14,7 @@ const UserMainPage = props => {
             <section className='bg-light' style={{height: '100vh'}}>
                 <Header/>
                 <div className='container mt-5'>
-                    <h2 className='display-5'>¡Bienvenido {auth.username}!</h2>
+                    <h2 className='display-5'>¡Bienvenido {auth && auth.username? auth.username: ''}!</h2>
                     <div className={`p-4 p-md-5 mb-4 rounded text-bg-dark ${classes.backgroundImage}`}>
                         <div className="col-md-6 px-0">
                             <em className="lead my-3">¨Jehová es mi fortaleza y mi escudo; En él confió mi corazón, y fui ayudado, Por lo que se gozó mi corazón, Y con mi cántico le alabaré.¨. (Salmo 28:7 RVR1960)</em>

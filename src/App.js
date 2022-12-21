@@ -24,28 +24,32 @@ const App = () => {
 
     if (!token) {
       dispatch(authActions.logout())
-    } else {
-      const response = request.backendRequest({
-        url: '/checkUser',
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: {
-          token
-        }
-      });
-
-      response.then(data => {
-        dispatch(authActions.login({ userData: data.user, token: token }));
-      });
-
-      response.catch(error => {
-        dispatch(authActions.logout())
-      })
-
     }
-  }, [dispatch, request])
+
+    const response = request.backendRequest({
+      url: '/checkUser',
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: {
+        token
+      }
+    });
+
+    
+    response.then(data => {
+      if (data.message !== 'Failed to fetch') {
+        dispatch(authActions.login({ userData: data.user, token: token }));
+      }
+    });
+
+    response.catch(error => {
+      console.log(error)
+    })
+
+
+  }, [])
 
   const isNotAuthenticated = !auth.isAuth && !auth.isLoading;
   const isAuthenticated = auth.isAuth && !auth.isLoading;
@@ -68,7 +72,7 @@ const App = () => {
         </Route>
 
         {isNotAuthenticated && <Route exact path={paths.frontend.info}>
-          <InfoPage/>
+          <InfoPage />
         </Route>}
 
         {!auth.isAuth && <Route exact path={paths.frontend.register}>

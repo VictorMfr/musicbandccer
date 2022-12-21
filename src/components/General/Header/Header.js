@@ -16,8 +16,8 @@ const Header = () => {
         // WelcomePage header
         <>
             {urlLocation === "/" && !localStorage.getItem('token') &&
-                <nav class="navbar navbar-expand-lg bg-light border-bottom p-3">
-                    <div class="container-fluid">
+                <nav className="navbar navbar-expand-lg bg-light border-bottom p-3">
+                    <div className="container-fluid">
                         <div className='d-flex'>
                             <button className="btn navbar-brand p-0" onClick={() => history.push('/')}>Repertorio CCER</button>
                             <button className='btn p-0 m-0' onClick={() => history.push('/info')}>Información</button>

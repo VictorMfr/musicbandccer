@@ -2,8 +2,8 @@ import { useSelector } from "react-redux";
 
 
 const useBackendRequest = () => {
+    /// Getting constants
     const BackendUrl = useSelector(state => state.routes.backend);
-
     const backendRequest = async (requestConfig, isLocal = false) => {
         try {
             const response = await fetch((isLocal? BackendUrl.urlLocal: BackendUrl.url) + requestConfig.url, {
@@ -11,6 +11,7 @@ const useBackendRequest = () => {
                 headers: requestConfig.headers,
                 body: JSON.stringify(requestConfig.body)
             });
+            
             if (!response.ok) {
                 throw new Error('There was an error while fetching to backend');
             }
