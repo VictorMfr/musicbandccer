@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import useBackendRequest from './hooks/backendRequest';
 import { authActions } from './storage-redux/auth';
+import { distanceAndSkiddingToXY } from '@popperjs/core/lib/modifiers/offset';
 
 
 const RepertoryPage = React.lazy(() => import('./pages/RepertoryPage/RepertoryPage'));
@@ -49,7 +50,7 @@ const App = () => {
     })
 
 
-  }, [])
+  }, [dispatch, response])
 
   const isNotAuthenticated = !auth.isAuth && !auth.isLoading;
   const isAuthenticated = auth.isAuth && !auth.isLoading;
