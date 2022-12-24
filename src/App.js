@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import useBackendRequest from './hooks/backendRequest';
 import { authActions } from './storage-redux/auth';
-import { distanceAndSkiddingToXY } from '@popperjs/core/lib/modifiers/offset';
+
 
 
 const RepertoryPage = React.lazy(() => import('./pages/RepertoryPage/RepertoryPage'));
@@ -20,14 +20,11 @@ const App = () => {
   const dispatch = useDispatch();
 
 
+
+  const token = localStorage.getItem('token');
+
   useEffect(() => {
-    const token = localStorage.getItem('token');
-
-    if (!token) {
-      dispatch(authActions.logout())
-    }
-
-    const response = request.backendRequest({
+    request.backendRequest({
       url: '/checkUser',
       method: 'POST',
       headers: {
@@ -36,21 +33,14 @@ const App = () => {
       body: {
         token
       }
-    });
-
-    
-    response.then(data => {
-      if (data.message !== 'Failed to fetch') {
-        dispatch(authActions.login({ userData: data.user, token: token }));
-      }
-    });
-
-    response.catch(error => {
-      console.log(error)
+    }).then(data => {
+      dispatch(authActions.login({userData: data.userData}));
+    }).catch(error => {
+      console.log(error);
+      dispatch(authActions.logout());
     })
+  },[dispatch, token]);
 
-
-  }, [dispatch, response])
 
   const isNotAuthenticated = !auth.isAuth && !auth.isLoading;
   const isAuthenticated = auth.isAuth && !auth.isLoading;

@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { useMemo } from "react";
 
 
 const useBackendRequest = () => {
@@ -18,7 +19,7 @@ const useBackendRequest = () => {
             const data = await response.json();
             return data;
         } catch (error) {
-            return error;
+            throw new Error(error);
         }
     }
 
