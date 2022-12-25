@@ -1,9 +1,10 @@
 .formSizing {
-    width: 25%;
+    width: 50%;
+    min-width: 16rem;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 1400px) {
     .formSizing {
-        width: 75%;
+        width: 20rem;
     }
 }

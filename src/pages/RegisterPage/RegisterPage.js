@@ -76,18 +76,18 @@ const RegisterPage = () => {
                         <h5 className='text-center'>Registro</h5>
                     </div>
                     <form className='mb-3' onSubmit={submitFormHandler}>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label fs-6">Nombre de usuario</label>
-                            <input type="text" class="form-control mb-2" id="exampleFormControlInput1" onChange={usernameChangeHandler} value={username}  />
+                        <div className="mb-3">
+                            <label htmlFor="exampleFormControlInput1" className="form-label fs-6">Nombre de usuario</label>
+                            <input type="text" className="form-control mb-2" id="exampleFormControlInput1" onChange={usernameChangeHandler} value={username}  />
                             
-                            <label for="exampleFormControlInput2" class="form-label fs-6">Correo electrónico</label>
-                            <input type="email" class="form-control mb-2" id="exampleFormControlInput2" placeholder="correo@ejemplo.com" onChange={emailChangeHandler} value={email}  />
+                            <label htmlFor="exampleFormControlInput2" className="form-label fs-6">Correo electrónico</label>
+                            <input type="email" className="form-control mb-2" id="exampleFormControlInput2" placeholder="correo@ejemplo.com" onChange={emailChangeHandler} value={email}  />
                             
-                            <label for="exampleFormControlInput3" class="form-label fs-6">Contraseña</label>
-                            <input type="password" class="form-control mb-2" id="exampleFormControlInput3" onChange={passwordChangeHandler} value={password}/>
+                            <label htmlFor="exampleFormControlInput3" className="form-label fs-6">Contraseña</label>
+                            <input type="password" className="form-control mb-2" id="exampleFormControlInput3" onChange={passwordChangeHandler} value={password}/>
                             
-                            <label for="exampleFormControlInput4" class="form-label fs-6">Llave de acceso</label>
-                            <input type="password" class="form-control mb-4" id="exampleFormControlInput4" onChange={accessKeyChangeHandler} value={accessKey}/>
+                            <label htmlFor="exampleFormControlInput4" className="form-label fs-6">Llave de acceso</label>
+                            <input type="password" className="form-control mb-4" id="exampleFormControlInput4" onChange={accessKeyChangeHandler} value={accessKey}/>
                             
                             <button className='btn btn-primary w-100' type='submit'>Registrarse</button>
                         </div>

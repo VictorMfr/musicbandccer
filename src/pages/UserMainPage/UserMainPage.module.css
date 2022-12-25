@@ -11,8 +11,11 @@
 }
 
 .repertoryThumbnail2 {
-    background-image: linear-gradient(#43434377, #454545aa),url('../../../public/imgs/chat_image.jpeg');
+    background-image: linear-gradient(#43434328, #4545454f),url('../../../public/imgs/manteniance.jpg');
     background-position: center;
     background-size: cover;
 }
 
+.post:hover {
+    cursor: pointer;
+}

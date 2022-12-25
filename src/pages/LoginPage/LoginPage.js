@@ -62,19 +62,19 @@ const LoginPage = () => {
                         <h5 className='text-center'>Iniciar sesión</h5>
                     </div>
                     <form className='mb-3' onSubmit={loginFormHandler}>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label fs-6">Correo electrónico</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="correo@ejemplo.com" onChange={emailChangeHandler} value={email}  />
+                        <div className="mb-3">
+                            <label htmlFor="exampleFormControlInput1" className="form-label fs-6">Correo electrónico</label>
+                            <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="correo@ejemplo.com" onChange={emailChangeHandler} value={email}  />
                             <br />
-                            <label for="exampleFormControlInput2" class="form-label fs-6">Contraseña</label>
-                            <input type="password" class="form-control" id="exampleFormControlInput2" onChange={passwordChangeHandler} value={password}/>
+                            <label htmlFor="exampleFormControlInput2" className="form-label fs-6">Contraseña</label>
+                            <input type="password" className="form-control" id="exampleFormControlInput2" onChange={passwordChangeHandler} value={password}/>
                             <br />
                             <button className='btn btn-primary w-100' type='submit'>Iniciar sesión</button>
                         </div>
                     </form>
                 </div>
                 <br/>
-                <div className='bg-white px-4 py-1 rounded-3 d-flex align-items-center'>
+                <div className='bg-white px-4 py-1 rounded-3 d-flex align-items-center justify-content-center'>
                     <p className='m-0'>¿Nuevo Integrante?</p>
                     <button className='btn btn-link px-1'>Registrate</button>
                 </div>

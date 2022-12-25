@@ -10,10 +10,10 @@ import MusicListFilter from '../../components/RepertoryPage/MusicList/MusicListF
 
 
 const RepertoryPage = () => {
-
-    const token = useSelector(state => state.auth.token);
+    const songs = useSelector(state => state.repertory.songs);
     const dispatch = useDispatch();
     const request = useBackendRequest();
+
 
     useEffect(() => {
         request.backendRequest({
@@ -22,18 +22,17 @@ const RepertoryPage = () => {
             headers: {
                 'Content-type': 'application/json'
             },
-            body: { token }
+            body: { token: localStorage.getItem('token') }
         }).then(response => {
             dispatch(repertoryActions.updateSongs({ songs: response.songs }));
             dispatch(repertoryActions.setLoadedSongs())
         }).catch(error => {
+            console.log('errorrr')
             console.log(error);
         });
-    }, [dispatch, request, token]);
+    },[]);
 
-
-
-
+    console.log(songs)
 
     return (
         <>

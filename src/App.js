@@ -1,5 +1,5 @@
 import React, { useEffect, Suspense } from 'react';
-import { Switch, Route, Redirect } from 'react-router';
+import { Switch, Route, Redirect, us } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import useBackendRequest from './hooks/backendRequest';
 import { authActions } from './storage-redux/auth';
@@ -19,8 +19,6 @@ const App = () => {
   const request = useBackendRequest();
   const dispatch = useDispatch();
 
-
-
   const token = localStorage.getItem('token');
 
   useEffect(() => {
@@ -34,12 +32,12 @@ const App = () => {
         token
       }
     }).then(data => {
-      dispatch(authActions.login({userData: data.userData}));
+      console.log(data);
+      dispatch(authActions.login({userData: data.user, token: data.token}));
     }).catch(error => {
-      console.log(error);
       dispatch(authActions.logout());
     })
-  },[dispatch, token]);
+  },[]);
 
 
   const isNotAuthenticated = !auth.isAuth && !auth.isLoading;

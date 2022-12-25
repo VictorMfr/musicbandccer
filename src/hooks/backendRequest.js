@@ -5,7 +5,7 @@ import { useMemo } from "react";
 const useBackendRequest = () => {
     /// Getting constants
     const BackendUrl = useSelector(state => state.routes.backend);
-    const backendRequest = async (requestConfig, isLocal = false) => {
+    const backendRequest = async (requestConfig, isLocal = true) => {
         try {
             const response = await fetch((isLocal? BackendUrl.urlLocal: BackendUrl.url) + requestConfig.url, {
                 method: requestConfig.method,

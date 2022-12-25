@@ -4,7 +4,7 @@ import { repertoryActions } from '../../../../storage-redux/repertory';
 
 
 const MusicListFilter = props => {
-
+    
     const dispatch = useDispatch();
     
     const typeChangeHandler = (event) => {
@@ -13,12 +13,13 @@ const MusicListFilter = props => {
 
     const toneChangeHandler = (event) => {
         dispatch(repertoryActions.updateFilteredSongTone({filterSongTone: event.target.value}));
-        console.log(event.target.value)
     }
 
     const searchedSongChangeHandler = (event) => {
         dispatch(repertoryActions.updateFilteredSearchedSong({filterSearchedSong: event.target.value}));
     }
+
+    
 
 
     return (
@@ -56,8 +57,7 @@ const MusicListFilter = props => {
                 </select>
                 </div>
                 <div className='col-4 d-flex align-items-center'>
-                    
-                    <input className='form-control form-control-sm' placeholder='Nombre de la canción' onChange={searchedSongChangeHandler} />
+                    <input className='form-control form-control-sm' placeholder='Nombre de la canción' onChange={searchedSongChangeHandler}/>
                 </div>
                 
             </div>

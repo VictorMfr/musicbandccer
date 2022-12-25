@@ -13,7 +13,6 @@ const MusicList = props => {
         setSongSelected(data);
     }
 
-
     return (
         <>
             {!repertory.isLoadingSongs && <div className={`overflow-auto ${classes.scrollbar}`}>
@@ -37,27 +36,13 @@ const MusicList = props => {
                         </div>
                     </div>
                     {songs && songs.filter(song => {
-                        if (repertory.filterSongType === '') {
-                            return song;
-                        } else if (repertory.filterSongType === song.type) {
-                            return song;
-                        }
-                        return song;
+                        return repertory.filterSongType === '' || repertory.filterSongType === song.type
                     }).filter(song => {
-                        if (repertory.filterSongTone === '') {
-                            return song;
-                        } else if (repertory.filterSongTone === song.tone) {
-                            return song;
-                        }
-                        return song;
+                        return repertory.filterSongTone === '' || repertory.filterSongTone === song.tone
                     }).filter(song => {
-                        if (repertory.filterSearchedSong === '') {
-                            return song;
-                        } else if (song.title.toLowerCase().includes(repertory.filterSearchedSong.toLowerCase())) {
-                            return song;
-                        }
-                        return song;
-                    }).map((song, index) => <MusicItem
+                        return repertory.filterSearchedSong === '' || song.title.toLowerCase().includes(repertory.filterSearchedSong.toLowerCase())
+                    }).
+                    map((song, index) => <MusicItem
                         index={index}
                         markedText={repertory.filterSearchedSong}
                         title={song.title}
