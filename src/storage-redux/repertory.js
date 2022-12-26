@@ -4,6 +4,7 @@ const initialState = {
     isModal: false,
     songs: [],
     song: null,
+    isModalForDelete: false,
     isLoadingSongs: true,
     updateModal: null,
     filterSearchedSong: '',
@@ -22,8 +23,27 @@ const repertoryReducer = createSlice({
             state.isModal = true;
             state.updateModal = action.payload.song
         },
+        showModalForDelete(state, action) {
+            state.isModalForDelete = true;
+            state.updateModal = action.payload.song
+        },
         hideModal(state) {
             state.isModal = false;
+            state.isModalForDelete = false;
+            state.updateModal = null;
+            state.song = null;
+        },
+        hideModalForDelete(state) {
+            state.isModal = false;
+            state.isModalForDelete = false;
+            state.updateModal = null;
+            state.song = null;
+        },
+        hideModalForUpdate(state) {
+            state.isModal = false;
+            state.isModalForDelete = false;
+            state.updateModal = null;
+            state.song = null;
         },
         setLoadedSongs(state) {
             state.isLoadingSongs = false;

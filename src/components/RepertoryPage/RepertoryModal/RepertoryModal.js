@@ -18,7 +18,7 @@ const RepertoryModal = props => {
     const [timesPlayed, setTimesPlayed] = useState(0);
     const [url, setUrl] = useState('');
 
-    const token = useSelector(state => state.auth.token);
+    const token = localStorage.getItem('token')
     const updateModal = useSelector(state => state.repertory.updateModal);
     const repertory = useSelector(state => state.repertory);
 
@@ -26,7 +26,8 @@ const RepertoryModal = props => {
 
     useEffect(() => {
         
-        if (updateModal) {
+
+        if (updateModal != null) {
             setTitle(updateModal.title);
             setAuthor(updateModal.author);
             setType(updateModal.type);
@@ -85,8 +86,6 @@ const RepertoryModal = props => {
             databaseId: (updateModal && updateModal.databaseId) ? updateModal.databaseId : '',
         }
 
-        console.log(data)
-
         if (!updateModal) {
             const response = request.backendRequest({
                 url: '/song',
@@ -98,17 +97,21 @@ const RepertoryModal = props => {
             });
 
             response.then(response => {
-                console.log(response)
                 if (response.song) {
                     dispatch(repertoryActions.addSong({ song: response.song }));
                     dispatch(repertoryActions.hideModal());
                     setTimeout(() => {
                         setLoading(false)
-                    },1000);
+                        setTitle('');
+                        setAuthor('');
+                        setType('');
+                        setTone('');
+                        setIsMounted(false);
+                        setTimesPlayed(0);
+                        setUrl('');
+                    }, 1000);
                 }
                 setLoading(false)
-                
-                
             });
 
             response.catch(error => {
@@ -127,18 +130,28 @@ const RepertoryModal = props => {
                 dispatch(repertoryActions.hideModal());
                 setTimeout(() => {
                     setLoading(false)
-                },1000);
+                    setTitle('');
+                    setAuthor('');
+                    setType('');
+                    setTone('');
+                    setIsMounted(false);
+                    setTimesPlayed(0);
+                    setUrl('');
+                }, 1000);
             });
         }
+
+
+
     }
 
-    
+
 
     return (
         <Modal show={repertory.isModal} onHide={() => dispatch(repertoryActions.hideModal())}>
             <Modal.Header>
-                <Modal.Title>{updateModal? 'Actualizar cancion':'Añadir canción'}</Modal.Title>
-                <CloseButton onClick={closeModalHandler}/>
+                <Modal.Title>{updateModal ? 'Actualizar cancion' : 'Añadir canción'}</Modal.Title>
+                <CloseButton onClick={closeModalHandler} />
             </Modal.Header>
             <Modal.Body>
                 {!loading && <form className='form'>
@@ -196,22 +209,8 @@ const RepertoryModal = props => {
                         </div>
                     </div>
 
-                    <div className='row mb-2'>
-                        <div className='col'>
-                            <div className="form-check form-switch">
-                                <input className="form-check-input" type="checkbox" checked={isMounted} role="switch" id="flexSwitchCheckDefault" onChange={isMountedChangeHandler}/>
-                                <label className="form-check-label" htmlFor="flexSwitchCheckDefault">¿Está montada?</label>
-                            </div>
-                        </div>
-                    </div>
-                    {isMounted && <div className='row'>
-                        <div className='col-6'>
-                            <div className="form-sm">
-                                <label htmlFor="floatingInputValue">Veces tocadas</label>
-                                <input type="number" className="form-control" id="floatingInputValue" placeholder="" onChange={timesPlayedChangeHandler} value={timesPlayed} />
-                            </div>
-                        </div>
-                    </div>}
+                    
+                    
                 </form>}
 
                 {loading &&
@@ -229,7 +228,7 @@ const RepertoryModal = props => {
                         Cancelar
                     </Button>
                     <Button variant="primary" onClick={submitFormHandler}>
-                        {updateModal? 'Actualizar cancion':'Añadir canción'}
+                        {updateModal ? 'Actualizar cancion' : 'Añadir canción'}
                     </Button>
                 </>}
 

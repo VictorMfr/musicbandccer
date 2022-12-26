@@ -1,37 +1,19 @@
 import React from 'react';
 import classes from './SongDetailsBar.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import useBackendRequest from '../../../hooks/backendRequest';
 import { repertoryActions } from '../../../storage-redux/repertory';
 import { CloseButton } from 'react-bootstrap';
 
 const SongDetailsBar = () => {
     const song = useSelector(state => state.repertory.song);
-    const token = useSelector(state => state.auth.token);
     const dispatch = useDispatch();
 
-    const request = useBackendRequest();
 
-    const removeSongHandler = () => {
-        request.backendRequest({
-            url: '/song',
-            method: 'DELETE',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: { token, _id: song.databaseId }
-        }).then(response => {
-            dispatch(repertoryActions.removeSong({ song: response.song }));
-            dispatch(repertoryActions.updateSongDetails({ song: null }));
-        })
-    }
-
-
+    console.log(song)
 
     return (
         <>
             {song && <div className={`container my-3 md-border mx-md-3 rounded-3 bg-white ${classes.songDetailsBarSizing}`}>
-
                 {song && <>
 
                     <div className="d-flex align-items-center justify-content-between">
@@ -67,23 +49,11 @@ const SongDetailsBar = () => {
                                     <small>{song.tone}</small>
                                 </div>
                             </div>
-                            <div className="col-6 d-flex align-items-center mb-4">
-                                <p className='mb-0 me-2'><i className="fa-solid fa-music mx-1 mb-0 h6"></i></p>
-                                <div>
-                                    <h6 className="fw-bold mb-0 fs-6">¿Montada?</h6>
-                                    <small>{song.isMounted ? 'Si' : 'No'}</small>
-                                </div>
-                            </div>
-                            <div className="col-6 d-flex align-items-center mb-4">
-                                <p className='mb-0 me-2'><i className="fa-solid fa-music mx-1 mb-0 h6"></i></p>
-                                <div>
-                                    <h6 className="fw-bold mb-0 fs-6">Veces tocadas</h6>
-                                    <small>{song.timesPlayed}</small>
-                                </div>
-                            </div>
+                            
+                            
                             <div className='col-12 d-flex align-items-center mb-3'>
                                 <button className='btn btn-success me-2' onClick={() => dispatch(repertoryActions.showModalForUpdate({song}))}>Update song</button>
-                                <button className='btn btn-danger' onClick={removeSongHandler}>Quitar canción</button>
+                                <button className='btn btn-danger' onClick={() => dispatch(repertoryActions.showModalForDelete({song}))}>Quitar canción</button>
                             </div>
                         </div>
 

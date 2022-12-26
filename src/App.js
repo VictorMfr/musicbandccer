@@ -1,5 +1,5 @@
 import React, { useEffect, Suspense } from 'react';
-import { Switch, Route, Redirect, us } from 'react-router';
+import { Switch, Route, Redirect } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import useBackendRequest from './hooks/backendRequest';
 import { authActions } from './storage-redux/auth';
@@ -20,6 +20,8 @@ const App = () => {
   const dispatch = useDispatch();
 
   const token = localStorage.getItem('token');
+
+  console.log('aaa')
 
   useEffect(() => {
     request.backendRequest({
@@ -43,12 +45,13 @@ const App = () => {
   const isNotAuthenticated = !auth.isAuth && !auth.isLoading;
   const isAuthenticated = auth.isAuth && !auth.isLoading;
 
+  console.log(isAuthenticated);
+
   return (
     <Suspense fallback={<></>}>
       <Switch>
-        {auth.isAuth && <Route path={paths.frontend.repertory}>
-          <RepertoryPage />
-        </Route>}
+
+        
 
         <Route exact path={paths.frontend.home}>
           {isNotAuthenticated && <WelcomePage />}
@@ -64,6 +67,8 @@ const App = () => {
           <InfoPage />
         </Route>}
 
+        
+
         {!auth.isAuth && <Route exact path={paths.frontend.register}>
           <RegisterPage />
         </Route>}
@@ -72,6 +77,10 @@ const App = () => {
           <LoginPage />
         </Route>}
 
+        <Route exact path={paths.frontend.repertory}>
+          {isAuthenticated && <RepertoryPage />}
+        </Route>
+        
         <Route path={paths.frontend.any}>
           <Redirect to={paths.frontend.home} />
         </Route>

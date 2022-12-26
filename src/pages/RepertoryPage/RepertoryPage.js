@@ -7,6 +7,7 @@ import RepertoryModal from '../../components/RepertoryPage/RepertoryModal/Repert
 import { repertoryActions } from '../../storage-redux/repertory';
 import useBackendRequest from '../../hooks/backendRequest';
 import MusicListFilter from '../../components/RepertoryPage/MusicList/MusicListFilter/MusicListFilter';
+import Proceed from '../../components/RepertoryPage/Proceed/Proceed';
 
 
 const RepertoryPage = () => {
@@ -27,7 +28,6 @@ const RepertoryPage = () => {
             dispatch(repertoryActions.updateSongs({ songs: response.songs }));
             dispatch(repertoryActions.setLoadedSongs())
         }).catch(error => {
-            console.log('errorrr')
             console.log(error);
         });
     },[]);
@@ -50,6 +50,7 @@ const RepertoryPage = () => {
                 </div>
             </section>
             <RepertoryModal/>
+            <Proceed/>
         </>
     );
 }
