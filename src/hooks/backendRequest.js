@@ -10,15 +10,12 @@ const useBackendRequest = () => {
                 headers: requestConfig.headers,
                 body: JSON.stringify(requestConfig.body)
             });
-            console.log(response)
             if (!response.ok) {
                 throw new Error('There was an error while fetching to backend');
             }
             const data = await response.json();
-            console.log(data)
             return data;
         } catch (error) {
-            console.log(error)
             throw new Error(error);
         }
     }

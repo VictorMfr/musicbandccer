@@ -8,9 +8,6 @@ const SongDetailsBar = () => {
     const song = useSelector(state => state.repertory.song);
     const dispatch = useDispatch();
 
-
-    console.log(song)
-
     return (
         <>
             {song && <div className={`container my-3 md-border mx-md-3 rounded-3 bg-white ${classes.songDetailsBarSizing}`}>

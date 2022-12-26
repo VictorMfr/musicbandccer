@@ -19,13 +19,9 @@ const Proceed = () => {
     }
 
     const token = localStorage.getItem('token');
-    console.log(token)
 
     const removeSongHandler = () => {
         setLoading(true)
-
-        console.log(song)
-        console.log(repertory.isModalForDelete);
 
         request.backendRequest({
             url: '/song',
@@ -35,7 +31,6 @@ const Proceed = () => {
             },
             body: { token , _id: song.databaseId }
         }).then(response => {
-            console.log(response);
             dispatch(repertoryActions.removeSong({ song: response.song }));
             dispatch(repertoryActions.updateSongDetails({ song: null }));
             dispatch(repertoryActions.hideModalForDelete());

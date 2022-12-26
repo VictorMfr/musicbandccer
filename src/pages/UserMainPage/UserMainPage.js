@@ -11,8 +11,6 @@ const UserMainPage = () => {
     const repertory = useSelector(state => state.routes.frontend.repertory);
     const auth = useSelector(state => state.auth.userData)
     const history = useHistory();
-    console.log('UserMainPage render')
-    console.log(auth)
 
     return (
         <>

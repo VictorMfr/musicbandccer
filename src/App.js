@@ -21,8 +21,6 @@ const App = () => {
 
   const token = localStorage.getItem('token');
 
-  console.log('aaa')
-
   useEffect(() => {
     request.backendRequest({
       url: '/checkUser',
@@ -34,7 +32,6 @@ const App = () => {
         token
       }
     }).then(data => {
-      console.log(data);
       dispatch(authActions.login({userData: data.user, token: data.token}));
     }).catch(error => {
       dispatch(authActions.logout());
@@ -44,8 +41,6 @@ const App = () => {
 
   const isNotAuthenticated = !auth.isAuth && !auth.isLoading;
   const isAuthenticated = auth.isAuth && !auth.isLoading;
-
-  console.log(isAuthenticated);
 
   return (
     <Suspense fallback={<></>}>

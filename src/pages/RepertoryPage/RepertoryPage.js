@@ -11,7 +11,6 @@ import Proceed from '../../components/RepertoryPage/Proceed/Proceed';
 
 
 const RepertoryPage = () => {
-    const songs = useSelector(state => state.repertory.songs);
     const dispatch = useDispatch();
     const request = useBackendRequest();
 
@@ -31,8 +30,6 @@ const RepertoryPage = () => {
             console.log(error);
         });
     },[]);
-
-    console.log(songs)
 
     return (
         <>
