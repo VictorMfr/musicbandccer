@@ -11,7 +11,7 @@ const initialState = {
     },
 
     backend: {
-        url: 'https://backend-music-band-api.vercel.app/',
+        url: 'https://backend-music-band-api.vercel.app',
         urlLocal: 'http://localhost:9000'
     }
 }
