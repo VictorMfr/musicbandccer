@@ -219,7 +219,7 @@ const RegisterPage = () => {
 
                                 <div className="position-relative mb-2">
                                     <label htmlFor="emailInput" className="form-label">Correo electrónico</label>
-                                    <input type="text" className={`form-control ${(registerCredentials.emailValid && !errors.email) ? 'is-valid' : ((registerCredentials.emailValid === true && errors.email) || (registerCredentials.emailValid === false && !errors.email) || (registerCredentials.emailValid === false && errors.email)) ? 'is-invalid' : ''}`} id="emailInput" required onChange={emailChangeHandler} value={registerCredentials.email} placeholder="correo@ejemplo.com" />
+                                    <input type="email" className={`form-control ${(registerCredentials.emailValid && !errors.email) ? 'is-valid' : ((registerCredentials.emailValid === true && errors.email) || (registerCredentials.emailValid === false && !errors.email) || (registerCredentials.emailValid === false && errors.email)) ? 'is-invalid' : ''}`} id="emailInput" required onChange={emailChangeHandler} value={registerCredentials.email} placeholder="correo@ejemplo.com" />
 
                                     <div className="invalid-tooltip">
                                         {(errors.email)? 'El correo  ya existe' :'Escriba un correo válido'}
@@ -228,7 +228,7 @@ const RegisterPage = () => {
 
                                 <div className="position-relative mb-2">
                                     <label htmlFor="passwordInput" className="form-label">Contraseña</label>
-                                    <input type="text" className={`form-control ${(registerCredentials.passwordValid) ? 'is-valid' : (registerCredentials.passwordValid === false) ? 'is-invalid' : ''}`} id="passwordInput" required onChange={passwordChangeHandler} value={registerCredentials.password} />
+                                    <input type="password" className={`form-control ${(registerCredentials.passwordValid) ? 'is-valid' : (registerCredentials.passwordValid === false) ? 'is-invalid' : ''}`} id="passwordInput" required onChange={passwordChangeHandler} value={registerCredentials.password} />
 
                                     <div className="invalid-tooltip">
                                         Contraseña debe ser mayor a 6 caracteres
@@ -237,7 +237,7 @@ const RegisterPage = () => {
 
                                 <div className="position-relative mb-2">
                                     <label htmlFor="passwordCheckInput" className="form-label">Repetir contraseña</label>
-                                    <input type="text" className={`form-control ${(registerCredentials.passwordCheckValid) ? 'is-valid' : (registerCredentials.passwordCheckValid === false) ? 'is-invalid' : ''}`} id="passwordCheckInput" required onChange={passwordCheckChangeHandler} value={registerCredentials.passwordCheck} />
+                                    <input type="password" className={`form-control ${(registerCredentials.passwordCheckValid) ? 'is-valid' : (registerCredentials.passwordCheckValid === false) ? 'is-invalid' : ''}`} id="passwordCheckInput" required onChange={passwordCheckChangeHandler} value={registerCredentials.passwordCheck} />
 
                                     <div className="invalid-tooltip">
                                         Las contraseñas no coinciden
