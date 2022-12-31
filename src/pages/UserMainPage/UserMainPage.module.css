@@ -5,13 +5,13 @@
 }
 
 .repertoryThumbnail {
-    background-image: linear-gradient(#43434377, #454545aa),url('../../../public/imgs/repertory_image.jpg');
+    background-image: linear-gradient(#43434377, #454545aa),url('../../../public/imgs/repertory_image.jpeg');
     background-position: center;
     background-size: cover;
 }
 
 .repertoryThumbnail2 {
-    background-image: linear-gradient(#43434328, #4545454f),url('../../../public/imgs/manteniance.jpg');
+    background-image: linear-gradient(#43434328, #4545454f),url('../../../public/imgs/manteniance.jpeg');
     background-position: center;
     background-size: cover;
 }

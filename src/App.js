@@ -19,9 +19,10 @@ const App = () => {
   const request = useBackendRequest();
   const dispatch = useDispatch();
 
-  const token = localStorage.getItem('token');
+  
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
     request.backendRequest({
       url: '/checkUser',
       method: 'POST',
@@ -31,12 +32,9 @@ const App = () => {
       body: {
         token
       }
-    }).then(data => {
-      dispatch(authActions.login({userData: data.user, token: data.token}));
-    }).catch(error => {
-      dispatch(authActions.logout());
-    })
-  },[]);
+    }).then(data => dispatch(authActions.login({ userData: data.user, token: data.token }))
+    ).catch(() => dispatch(authActions.logout()));
+  }, [dispatch, request]);
 
 
   const isNotAuthenticated = !auth.isAuth && !auth.isLoading;
@@ -45,9 +43,6 @@ const App = () => {
   return (
     <Suspense fallback={<></>}>
       <Switch>
-
-        
-
         <Route exact path={paths.frontend.home}>
           {isNotAuthenticated && <WelcomePage />}
           {isAuthenticated && <UserMainPage />}
@@ -62,8 +57,6 @@ const App = () => {
           <InfoPage />
         </Route>}
 
-        
-
         {!auth.isAuth && <Route exact path={paths.frontend.register}>
           <RegisterPage />
         </Route>}
@@ -75,7 +68,7 @@ const App = () => {
         <Route exact path={paths.frontend.repertory}>
           {isAuthenticated && <RepertoryPage />}
         </Route>
-        
+
         <Route path={paths.frontend.any}>
           <Redirect to={paths.frontend.home} />
         </Route>

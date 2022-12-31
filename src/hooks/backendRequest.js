@@ -1,28 +1,33 @@
+import { useCallback, useMemo } from "react";
 import { useSelector } from "react-redux";
+
 
 const useBackendRequest = () => {
     /// Getting constants
     const BackendUrl = useSelector(state => state.routes.backend);
-    const backendRequest = async (requestConfig, isLocal = false) => {
+    const backendRequest = useCallback(async (requestConfig, isLocal = true) => {
         try {
-            const response = await fetch((isLocal? BackendUrl.urlLocal: BackendUrl.url) + requestConfig.url, {
+            const response = await fetch((isLocal ? BackendUrl.urlLocal : BackendUrl.url) + requestConfig.url, {
                 method: requestConfig.method,
                 headers: requestConfig.headers,
                 body: JSON.stringify(requestConfig.body)
             });
             if (!response.ok) {
-                throw new Error('There was an error while fetching to backend');
+                throw new Error('ERROR_FETCHING');
             }
             const data = await response.json();
             return data;
         } catch (error) {
             throw new Error(error);
         }
-    }
+    }, [BackendUrl.url, BackendUrl.urlLocal])
 
-    return {
-        backendRequest,
-    }
+    return useMemo(() => {
+        return {
+            backendRequest
+        }
+    }, [backendRequest])
+
 }
 
 export default useBackendRequest;

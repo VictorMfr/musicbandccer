@@ -1,10 +1,14 @@
 .formSizing {
-    width: 50%;
-    min-width: 16rem;
+    width: 20rem;
 }
 
-@media (max-width: 1400px) {
-    .formSizing {
-        width: 20rem;
+.img {
+    width: 72px;
+    height: 72px;
+}
+
+@media (max-width: 768px) {
+    .img {
+        display: none;
     }
 }
